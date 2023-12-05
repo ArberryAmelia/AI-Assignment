@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &424243560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 284040910052720130, guid: d4bacc4eba3673d48a0ab37e520d2019,
-    type: 3}
-  m_PrefabInstance: {fileID: 4859368078598753768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &462611711
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +497,7 @@ Transform:
   m_GameObject: {fileID: 770756083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -2}
+  m_LocalPosition: {x: -0.3, y: 0.5, z: -3.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -550,9 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bfebaea62545f4c9b6104fc2d4c762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 770756083}
-  movementSpeed: 3
-  turnSpeed: 1
 --- !u!1 &846646296
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,25 +933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d034a0f22f6f47af102b774b91b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: NPC1
-  talkToNode: NPCCube1
-  scriptToLoad: {fileID: 7545569452688597077, guid: 6169c57d59a0dc1448af9e205167cae6,
-    type: 3}
-  dialogueRunner: {fileID: 1290606831}
-  dialogueCanvas: {fileID: 424243560}
-  PostionSpeachBubble: {x: 0, y: 2, z: 0}
---- !u!114 &1290606831 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3422881318780370560, guid: d4bacc4eba3673d48a0ab37e520d2019,
-    type: 3}
-  m_PrefabInstance: {fileID: 4859368078598753768}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1290606836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7650366194977190977, guid: d4bacc4eba3673d48a0ab37e520d2019,
@@ -1287,13 +1259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d034a0f22f6f47af102b774b91b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Cube1
-  talkToNode: NPCCube2
-  scriptToLoad: {fileID: 7545569452688597077, guid: 6169c57d59a0dc1448af9e205167cae6,
-    type: 3}
-  dialogueRunner: {fileID: 1290606831}
-  dialogueCanvas: {fileID: 424243560}
-  PostionSpeachBubble: {x: 0, y: 2, z: 0}
 --- !u!65 &1848605311
 BoxCollider:
   m_ObjectHideFlags: 0
