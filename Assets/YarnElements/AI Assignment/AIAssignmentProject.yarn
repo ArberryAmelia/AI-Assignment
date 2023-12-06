@@ -1,55 +1,119 @@
 ﻿title: Awake
 tag:
+position: -258,32
 ---
-
+<<declare $visitedJessica = false>>
+<<declare $visitedAnthony = false>>
+<<declare $visitedStephen = false>>
+<<declare $visitedNicole = false>>
+<<declare $visitedJennifer = false>>
+<<declare $visitedJames = false>>
+<<declare $visitedBrian = false>>
 ===
 
 title:Jessica
 tag:
+position: 14,53
 ---
+<<if $visitedJessica is false >>
 
-
+<<endif>>
 ===
 
 title:Anthony
 tag:
+position: 222,-320
 ---
-
-
+<<if $visitedAnthony is false >>
+<<endif>>
 ===
 
 title:Stephen
 tag:
+position: 529,-224
 ---
+<<if $visitedStephen is false >>
 
+Hi I'm sorry to bother you but I've lost my son! I turned my back for two seconds to answer my phone, and now he's gone. Have you seen him? #line:0475d16 
 
+-> No I haven't seen him, sorry. #line:0fbdf4b 
+    Oh okay, do you think you could help me find him, please? #line:0e03adb 
+
+    -> Sure I can! What does he look like? #line:0c53865 
+        Thank you! His name is James, he's 11 and he's wearing his favourite orange shirt today. #line:01a287f 
+
+        -> Okay, lets find him. #line:0af2579 
+
+    -> Sorry but I'm a bit busy at the moment, but I will let you know if I see him around. #line:05afaf9 
+        Oh.. thats okay, thanks anyway. 
+
+-> I don't think so, but I can help you find him #line:049091a 
+    Thank you! His name is James, he's 11 and he's wearing his favourite orange shirt today. #line:07a3f71 
+
+        -> Okay, lets split up and search for him. #line:057daa3 
+
+<<set $visitedStephen to true>>
+<<jump FoundJames>>
+
+<<elseif $visitedStephen is true>>
+
+Hey, I haven't found him yet I'm getting worried, have you seen him? 
+
+<<elseif $visitedAnthony is true>>
+-> I haven't seen him.. maybe you should speak to that police officer. His name is Anthony, he was just heading over to the bakery.
+    Okay, I'll go ask him. Thank you for helping me.
+<<jump FoundJames>>
+<<endif>> 
+===
+
+title: FoundJames
+tag:
+---
+<<if $visitedJames is true>>
+-> Is his name James? I spoke to him inside that bakery just a few minutes ago! #line:0616a55 
+    Yes, that's him! Thank you so much, I should have guessed he was looking at the cakes haha.
+<<endif>>
 ===
 
 title:Nicole
 tag: 
+position: -34,-296
 ---
-
-
+<<if $visitedNicole is false >>
+<<endif>>
 ===
 
 title:Jennifer
 tag:
+position: -122,-157
 ---
+<<if $visitedJennifer is false >>
 
+Good morning, how are you? What can I get for you today? #line:0d0737a 
 
+-> I'm good thank you, how are you? #line:0199991 
+-> Can I please get some doughnuts? #line:0760154 
+<<endif>>
 ===
 
 title:James
 tag:
+position: 187,-154
 ---
+<<if $visitedJames is false>>
+Can you help me find my dad? 
+-> Hey, are you okay?
+    No, I wanted to come and look at the cakes but I don't know where my Dad went 
+    -> That's okay, maybe I can help you find him. What does he look like? 
 
-
+<<endif>>
 ===
 
 title:Brian
 tag:
+position: 405,-45
 ---
-
-
+<<if $visitedBrian is false >>
+<<endif>>
 ===
 
