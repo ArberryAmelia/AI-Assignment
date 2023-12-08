@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 using static UnityEngine.GraphicsBuffer;
-
+using Unity.AI;
+using UnityEngine.AI;
+using UnityEditor;
+using TMPro;
+using JetBrains.Annotations;
 
 public class NPC3D : MonoBehaviour
 {
     [Header("Character")]
     public string characterName = "";
+    public NavMeshAgent agent;
 
     [Header("Yarn Specific")]
     public string talkToNode = "";
@@ -23,11 +28,13 @@ public class NPC3D : MonoBehaviour
     private GameObject playerGameObject;
 
 
+
+
     /// </summary>
     // Start is called before the first frame update
     void Start()
     {
-        dialogueCanvas = GameObject.FindGameObjectWithTag("Dialogue Canvas"); 
+        dialogueCanvas = GameObject.FindGameObjectWithTag("Dialogue Canvas");
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
 
@@ -51,13 +58,13 @@ public class NPC3D : MonoBehaviour
         {
             Debug.LogError("dialogueRunner not set up", this);
         }
-        
+
         if (dialogueCanvas == null)
         {
             Debug.LogError("Dialogue Canvas not set up", this);
         }
 
-        if(playerGameObject == null)
+        if (playerGameObject == null)
         {
             Debug.LogError("Player Game Object not set up", this);
         }
@@ -86,10 +93,16 @@ public class NPC3D : MonoBehaviour
         //if other is player
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.LogError("Player");
             if (!string.IsNullOrEmpty(talkToNode))
             {
                 if (dialogueCanvas != null)
                 {
+                    if (agent != null)
+                    {
+                        agent.isStopped = true;
+                    }
+
                     //move the Canvas to the object and off set
                     canvasActive = true;
                     dialogueCanvas.transform.SetParent(transform); // use the root to prevent scaling
@@ -111,7 +124,30 @@ public class NPC3D : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             canvasActive = false;
+
+            if (agent != null)
+            {
+                float wanderDistance = 8f;
+
+                Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * wanderDistance;
+
+                randomDirection += transform.position;
+
+                NavMeshHit navHit;
+
+                NavMesh.SamplePosition(randomDirection, out navHit, wanderDistance, NavMesh.AllAreas);
+
+                Vector3 targetPosition;
+
+                targetPosition = navHit.position;
+
+                agent.SetDestination(targetPosition);
+
+
+            }
+
         }
     }
+
 }
 

@@ -1,6 +1,6 @@
 ﻿title: Awake
 tag:
-position: -258,32
+position: 111,-557
 ---
 <<declare $visitedJessica = false>>
 <<declare $visitedAnthony = false>>
@@ -9,111 +9,413 @@ position: -258,32
 <<declare $visitedJennifer = false>>
 <<declare $visitedJames = false>>
 <<declare $visitedBrian = false>>
+<<declare $NPCMood = "" as string>>
 ===
 
 title:Jessica
 tag:
-position: 14,53
+position: -544,-399
 ---
 <<if $visitedJessica is false >>
+
+Umm, excuse you! #line:09be7e8 
+
+-> I-I'm sorry, I didn't see you there  #line:06c9a27 
+    <<set $NPCMood to "positive">>
+-> Hey, there's no need to be rude.. #line:0c03706 
+    <<set $NPCMood to "neutral">> 
+-> Excuse yourself! You walked in to me  #line:0dedf02 
+    <<set $NPCMood to "negative">>
+
+<<set $visitedJessica to true >>
+
+<<jump JessicaResponse1>>
+
+<<elseif $visitedJessica is true>>
+
+Oh my god, what is your problem?! #line:060c1c4 
+
+-> I'm sorry I bumped in to you, but you were so rude! You need to apologise.  #line:0afc237 
+    <<set $NPCMood to "negative">>
+-> I just wanted to apologise for bumping in to you before. #line:0101a28 
+    <<set $NPCMood to "positive">>
+-> We need to stop bumping in to each other like this haha... #line:0be2fe4 
+    <<set $NPCMood to "negative">>
+
+<<jump JessicaResponse2>>
+<<else>>
+
+I don't want to talk to you, leave NOW! #line:070dc3b 
 
 <<endif>>
 ===
 
+title:JessicaResponse1
+tag:
+position: -763,-136
+---
+<<if $NPCMood is "positive">>
+    Oh uhm.. yeah okay. You should just watch where you're going next time.. #line:052e413 
+<<elseif $NPCMood is "neutral">>
+    Whatever, I'm late so can you just get out of my way. #line:0612c33 
+<<elseif $NPCMood is "negative">>
+    How dare you! Who the hell do you think you are? I am late and you are wasting my time, MOVE! #line:0c8973c 
+<<endif>>
+===
+
+title:JessicaResponse2
+tag:
+position: -590,137
+---
+<<if $NPCMood is "positive">>
+    Sorry, I'm just really late for an important meeting. I need to find my taxi, excuse me.  #line:0ba814a 
+<<elseif $NPCMood is "neutral">>
+    Are you serious? Leave me alone! #line:0d56b8d 
+<<elseif $NPCMood is "negative">>
+    I am not apologising, and you are going to stop harrassing me right now..  Excuse me, Officer!!! #line:06c8b13 
+<<endif>>
+===
+
+
 title:Anthony
 tag:
-position: 222,-320
+position: -42,-400
 ---
 <<if $visitedAnthony is false >>
+
+Hello there buddy, I fancy myself some doughnuts this morning, you know anywhere good around here? #line:035453a 
+
+-> Morning Officer, there is a bakery across the road, have you tried there? #line:0a54ae5
+    <<set $NPCMood to "neutral">>
+-> I'm not sure, I'm not really a fan of doughnuts.. #line:0dcbee7 
+    <<set $NPCMood to "negative">>
+-> Hello Officer, I was just about to go to that bakery across the street. Do you want me to get you some? #line:01ac4ec 
+    <<set $NPCMood to "positive">>
+
+<<set $visitedAnthony to true>>
+
+<<jump AnthonyResponse1>>
+
+<<elseif $visitedAnthony is true>>
+
+Oh, hello again! Did you bring me a doughnut? #line:0847aae 
+
+-> Yeah, they had some chocolate ones too so I got some of them! #line:0da8369 
+    <<set $NPCMood to "positive">>
+-> Ummm... I did.... but I ate them on the way back over.. sorry.... #line:0a0a7a7 
+    <<set $NPCMood to "negative">>
+-> I was going to, but I ran in to a boy who has lost his Dad. His name is James and he is just inside the bakery. #line:0958801 
+    <<set $NPCMood to "neutral">>
+<<jump AnthonyResponse2>>
+<<endif>>
+===
+
+title:AnthonyResponse1
+tag:
+position: -99,-155
+---
+<<if $NPCMood is "neutral">>
+    Oh I didn't notice! They smell good too...   #line:007ff01 
+    Right, I'm going to get some. Have a good day, buddy #line:0fe08c6 
+<<elseif $NPCMood is "negative">>
+    No way, I don't believe you mate. Everyone likes doughnuts! #line:075f0b9 
+<<elseif $NPCMood is "positive">>
+    Ohhh yeah please, I'd love that thanks! Can you get me some jam ones please? They're my favourite. #line:0d7ef09 
+
+<<endif>>
+===
+
+title:AnthonyResponse2
+tag:
+position: -51,86
+---
+<<if $NPCMood is "positive">>
+    That was kind thank you! I have been excited about these all morning  #line:0b118be 
+<<elseif $NPCMood is "neutral">>
+    Oh right I see, I will go and see if he is okay. Thank you for letting me know. #line:06fbe3a 
+<<elseif $NPCMood is "negative">>
+    I don't believe it... I thought we were just becoming friends too. I should have you arrested!! #line:01e14ab 
 <<endif>>
 ===
 
 title:Stephen
 tag:
-position: 529,-224
+position: 740,-394
 ---
 <<if $visitedStephen is false >>
 
 Hi I'm sorry to bother you but I've lost my son! I turned my back for two seconds to answer my phone, and now he's gone. Have you seen him? #line:0475d16 
 
 -> No I haven't seen him, sorry. #line:0fbdf4b 
-    Oh okay, do you think you could help me find him, please? #line:0e03adb 
-
-    -> Sure I can! What does he look like? #line:0c53865 
-        Thank you! His name is James, he's 11 and he's wearing his favourite orange shirt today. #line:01a287f 
-
-        -> Okay, lets find him. #line:0af2579 
-
-    -> Sorry but I'm a bit busy at the moment, but I will let you know if I see him around. #line:05afaf9 
-        Oh.. thats okay, thanks anyway. 
-
+    <<set $NPCMood to "negative">>
 -> I don't think so, but I can help you find him #line:049091a 
-    Thank you! His name is James, he's 11 and he's wearing his favourite orange shirt today. #line:07a3f71 
-
-        -> Okay, lets split up and search for him. #line:057daa3 
+    <<set $NPCMood to "neutral">>
+-> Is your name Stephen? I spoke to a boy inside that bakery, he said he was lost and to look for you. He was inside just a few minutes ago! #line:0616a55 
+    <<set $NPCMood to "positive">>
 
 <<set $visitedStephen to true>>
-<<jump FoundJames>>
+<<jump StephenResponse1>>
 
 <<elseif $visitedStephen is true>>
 
-Hey, I haven't found him yet I'm getting worried, have you seen him? 
+Hey! I haven't found him yet I'm getting worried, have you seen him?  #line:03a7da0 
 
-<<elseif $visitedAnthony is true>>
--> I haven't seen him.. maybe you should speak to that police officer. His name is Anthony, he was just heading over to the bakery.
-    Okay, I'll go ask him. Thank you for helping me.
-<<jump FoundJames>>
+-> No, I haven't seen him sorry, but I am still looking. #line:0bf66fd 
+    <<set $NPCMood to "neutral">>
+-> Umm, I didn't actually look for him #line:068ec89 
+    <<set $NPCMood to "negative">>
+-> Yes! He is in the bakery across the road, I told him to wait for you there. #line:0a39604 
+    <<set $NPCMood to "positive">>
+
+<<jump StephenResponse2>>
 <<endif>> 
 ===
 
-title: FoundJames
+title: StephenResponse1
 tag:
+position: 752,-99
 ---
-<<if $visitedJames is true>>
--> Is his name James? I spoke to him inside that bakery just a few minutes ago! #line:0616a55 
-    Yes, that's him! Thank you so much, I should have guessed he was looking at the cakes haha.
+<<if $NPCMood is "negative">>
+    Oh okay, please let me know if you see him #line:0e03adb 
+<<elseif $NPCMood is "neutral">>
+    Thank you! His name is James, he's 11 and he's wearing his favourite orange shirt today. #line:07a3f71 
+<<elseif $NPCMood is "positive">>
+    Yes that's him! Thank you so much! I should have guessed he was looking at the cakes haha. That's usually where I find him. #line:000377d 
 <<endif>>
 ===
 
+title:StephenResponse2
+tag:
+position: 769,189
+---
+<<if $NPCMood is "positive">>
+    Thank you so much! I should have guessed he was looking at the cakes haha. I am going to get him some to say sorry.  #line:00ee7cf 
+<<elseif $NPCMood is "negative">>
+    Oh... Well I need to find him, so was there any point coming back to speak to me? #line:0b51d4a 
+<<elseif $NPCMood is "neutral">>
+    Oh dear... I really need to find him. Here, take my phone number so you can call me if you find him. I am going to search over there. #line:0577c23 
+<<endif>>
+===
+
+
 title:Nicole
 tag: 
-position: -34,-296
+position: -299,-399
 ---
 <<if $visitedNicole is false >>
+Oh my God hiiiiiii, I haven't seen you in like forever! How are you doing? #line:0bb4854 
+
+-> Ummm, do I know you? #line:029a101 
+    <<set $NPCMood to "negative">>
+-> Oh, heyyyyy... you #line:0e67a88 
+    <<set $NPCMood to "neutral">>
+-> Ahhhh hey! I am doing great, you look like you are doing good too! How have you been? #line:01c0933 
+    <<set $NPCMood to "positive">>
+
+<<set $visitedNicole to true>>
+
+<<jump NicoleResponse1 >>
+
+<<elseif $visitedNicole is true>>
+
+Where did you run off to? We have so much catching up to do! #line:0f4a820 
+
+->Listen, you seem lovely but you really do have the wrong person. I have never met you before.. #line:0260dea 
+    <<set $NPCMood to "negative">>
+-> Ahaha yeah we really should some other time, I... um... have to get back to work #line:063a0e5 
+    <<set $NPCMood to "neutral">>
+-> We definitely do! You should go and see if there is a table free in that bakery. I will just go and get some money to buy you a coffee. #line:0d50ace 
+    <<set $NPCMood to "positive">>
+
+<<jump NicoleResponse2>>
+<<endif>>
+===
+
+title: NicoleResponse1
+tag:
+position: -365,-174
+---
+<<if $NPCMood is "neutral">>
+    You look great, how have you been? I heard about the new job, congrats!! #line:0521f14 
+<<elseif $NPCMood is "negative">>
+    Do not say you don't remember me! It's Nicole? We went to school together.. #line:098ec31 
+<<elseif $NPCMood is "positive">>
+    I am doing a-mazing! I have just moved in my my fiance so I am super happy! #line:0ae69e7 
+<<endif>>
+===
+
+title:NicoleResponse2
+tag:
+position: -331,47
+---
+<<if $NPCMood is "neutral">>
+    Oh yeah right, of course! Your new job! Congrats girl #line:036c361 
+<<elseif $NPCMood is "positive">>
+    Oooo coffee sound great! Don't you go running off again, I have missed you! #line:096f09c 
+<<elseif $NPCMood is "negative">>
+    Oh... I'm sorry I thought you were someone else... I'm so embarrassed  #line:0a061f6 
 <<endif>>
 ===
 
 title:Jennifer
 tag:
-position: -122,-157
+position: 256,-395
 ---
 <<if $visitedJennifer is false >>
 
 Good morning, how are you? What can I get for you today? #line:0d0737a 
 
 -> I'm good thank you, how are you? #line:0199991 
--> Can I please get some doughnuts? #line:0760154 
+    <<set $NPCMood to "positive">>
+-> Can I please get some jam doughnuts? And some of those chocolate ones too? Thank you. #line:0760154 
+    <<set $NPCMood to "neutral">>
+-> A coffee, black, and three doughnuts. #line:0a232af 
+    <<set $NPCMood to "negative">>
+
+<<set $visitedJennifer to true>>
+
+<<jump JenniferResponse1>>
+
+<<elseif $visitedJennifer is true>>
+
+Hello again, was there something else I can get for you? #line:0cde856 
+
+-> This coffee is cold, I want another. Made better this time.  #line:0b8a4e5 
+    <<set $NPCMood to "negative">>
+-> I'd like some more doughnuts please #line:07e57ae 
+    <<set $NPCMood to "neutral">>
+-> I just wanted to thank you again for the doughnut, and I hope you have a good day.  #line:0bbaa95 
+    <<set $NPCMood to "positive">>
+
+<<jump JenniferResponse2>>
 <<endif>>
 ===
 
+title: JenniferResponse1
+tag:
+position: 227,-77
+---
+<<if $NPCMood is "neutral">>
+    Of course, coming right up! #line:0907ca7 
+<<elseif $NPCMood is "positive">>
+    I am having a wonderful day, thank you! Nobody has asked me how I am today #line:0f58a26 
+    Here, have a free doughnut. #line:0e2a521 
+<<elseif $NPCMood is "negative">>
+    I'll get that to you right now.. #line:0f19904 
+<<endif>>
+===
+
+title: JenniferResponse2
+tag: 
+position: 231,126
+---
+<<if $NPCMood is "neutral">>
+    Chocolate and jam again? Wow you must really like doughnuts #line:0d8e81e 
+<<elseif $NPCMood is "positive">>
+    You have made my day! I hope you have a wonderful day yourself #line:0401337 
+<<elseif $NPCMood is "negative">>
+    Oh, I am so sorry, let me get you another... on the house... #line:0052290 
+<<endif>>
+===
+
+
 title:James
 tag:
-position: 187,-154
+position: 511,-395
 ---
 <<if $visitedJames is false>>
-Can you help me find my dad? 
--> Hey, are you okay?
-    No, I wanted to come and look at the cakes but I don't know where my Dad went 
-    -> That's okay, maybe I can help you find him. What does he look like? 
+
+Can you help me find my dad?  #line:0df9663 
+
+-> Hey, are you okay? #line:04172bc 
+    <<set $NPCMood to "neutral">>
+-> I haven't seen him around, sorry buddy. You should wait here, I will go and have a look for him?  #line:0be9158 
+    <<set $NPCMood to "positive">>
+-> How did you lose him? You should really keep better watch of where your dad is if you are out. #line:0fd62c3 
+    <<set $NPCMood to "negative">>
+
+<<set $visitedJames to true>>
+
+<<jump JamesResponse1>>
+
+<<elseif $visitedJames is true>>
+
+Have you found my Dad yet? I'm getting hungry and I want to go home.  #line:04e0ac7 
+
+-> I haven't found him yet I'm sorry buddy. Would you like me to buy you a doughnut? #line:0b2afbc 
+    <<set $NPCMood to "neutral">>
+-> No I haven't seen him sorry. But I did see a policeman outside, maybe he can find your dad for you? #line:0efc0bf 
+    <<set $NPCMood to "negative">>
+-> I just saw him outside! He is coming to find you right away so stay right here! #line:0653bea 
+    <<set $NPCMood to "positive">>
+
+<<jump JamesResponse2>>
+<<endif>>
+===
+
+title: JamesResponse1
+tag:
+position: 494,-151
+---
+<<if $NPCMood is "neutral">>
+   No, I wanted to come and look at the cakes but I don't know where my Dad went. Please find him for me!  #line:039839d  
+<<elseif $NPCMood is "positive">>
+    Thank you! He has been gone for ages and now I'm scared I won't find him again. His name is Stephen and he's really tall! #line:0cbd6ef 
+<<elseif $NPCMood is "negative">>
+    The cakes just looked really nice... I didn't mean to lose him... #line:054ddce 
+
+<<endif>>
+===
+
+title:JamesResponse2
+tag:
+position: 515,156
+---
+<<if $NPCMood is "neutral">>
+   No thank you. I just want to find my Dad so I can go home... #line:001b4ac 
+<<elseif $NPCMood is "positive">>
+    Thank you, thank you, thank you! I can't wait to see him! I want him to buy me six doughnuts now! #line:0431d02 
+<<elseif $NPCMood is "negative">>
+    Oh okay, I will go speak to the policeman. I think policemen are scary... #line:07cadf0 
 
 <<endif>>
 ===
 
 title:Brian
 tag:
-position: 405,-45
+position: 958,-393
 ---
-<<if $visitedBrian is false >>
+<<if $visitedBrian is false>>
+
+Excuse me love, do you mind if I go first in line? I've just got off work and I'm starving!  #line:0febbb9 
+
+-> Oh, yeah sure! It sounds like you have had a long night  #line:08fd28e 
+    <<set $NPCMood to "positive">>
+-> That's fine  #line:0b4757f 
+    <<set $NPCMood to "neutral">>
+-> I really have somewhere to be, sorry. I won't be long though. #line:03d06c2 
+    <<set $NPCMood to "negative">>
+
+<<set $visitedBrian to true>>
+
+<<jump BrianResponse1>>
+
+<<elseif $visitedBrian is true>>
+
+Have a good day, darling. #line:0c07d32 
+
 <<endif>>
 ===
 
+title: BrianResponse1
+tag:
+---
+<<if $NPCMood is "neutral">>
+   Thank you my love. I can't wait to get some sleep! #line:0b5dfec 
+<<elseif $NPCMood is "positive">>
+    Aren't you kind? Thank you my love. 12 hour shift so I would say so! Off to bed now so I can do the same tonight. #line:0651c95 
+<<elseif $NPCMood is "negative">>
+   Oh right, no problem.  #line:0c786d1 
+
+<<endif>>
+===
